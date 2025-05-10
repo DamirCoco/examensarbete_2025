@@ -4,14 +4,14 @@ import axios from 'axios';
 function BookingForm() {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
-  const [userId, setUserId] = useState('');
+  const [email, setEmail] = useState('');
 
   const book = async () => {
     try {
-      await axios.post('http://localhost:5000/api/book', {
+      await axios.post('http://localhost:5001/api/book', {
         date,
         time,
-        userId
+        email,
       });
       alert('Bokning skickad!');
     } catch (err) {
@@ -37,9 +37,9 @@ function BookingForm() {
       />
       <input
         type="text"
-        placeholder="Användar-ID"
-        value={userId}
-        onChange={(e) => setUserId(e.target.value)}
+        placeholder="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <button onClick={book}>Boka</button>
     </div>

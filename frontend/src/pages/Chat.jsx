@@ -8,15 +8,19 @@ function Chat() {
 
   useEffect(() => {
     // Hämta alla meddelanden
-    axios.get('/api/messages').then(res => {
-      setMessages(res.data);
-    });
+    axios.get('http://localhost:5001/api/messages')
+  .then(res => {
+    setMessages(res.data);
+  })
+  .catch(error => {
+    console.error('Det gick inte att hämta meddelanden', error);
+  });
   }, []);
 
   const sendMessage = async () => {
     if (!text || !sender) return;
     try {
-      const res = await axios.post('/api/message', { sender, text });
+      const res = await axios.post('http://localhost:5001/api/message', { sender, text });
       setMessages([...messages, res.data]);
       setText('');
     } catch (error) {
@@ -54,4 +58,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default Chat; 

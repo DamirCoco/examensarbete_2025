@@ -9,7 +9,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/login', {
+      const res = await axios.post('http://localhost:5001/api/login', {
         email,
         password,
       });

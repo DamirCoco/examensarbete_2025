@@ -9,21 +9,15 @@ const messageRoutes = require('./routes/messageRoutes');
 
 const app = express(); 
 
-/* app.use(cors({
-  origin: 'http://localhost:3001',
-  credentials: true
-})); */
-
-
-
 app.use(cors({
-  origin: 'http://localhost:5000',  // matcha exakt frontend-url
+  origin: '*',  // Tillåt alla domäner för felsökning
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 
 
-  
+
 app.use(express.json());
 
 app.use('/api', userRoutes);
@@ -38,4 +32,5 @@ app.get('/', (req, res) => {
   res.send('Servern körs!');
 });
 
-app.listen(5000, () => console.log('Servern körs på port 5000'));
+const PORT = 5001;
+app.listen(PORT, () => console.log(`Servern körs på port ${PORT}`));
